@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,12 +11,30 @@ namespace LeasingCase
 {
     public class LevelBehaviour : MonoBehaviour
     {
+        [SerializeField] private int _trainCount;
+        [SerializeField] private int _trainsToWin;
         [SerializeField] private float _spawnInterval = 2f;
 
         public bool Spawning;
         
         private bool _started;
         private bool _finished;
+
+        private int _currentTrainCount;
+        private int _correctCount;
+        private int _completedCount;
+        public int CompletedCount
+        {
+            get => _completedCount;
+            private set
+            {
+                _completedCount = value;
+                if (!UIController.Instance)
+                    return;
+                
+                UIController.Instance.SetTrainCount(_correctCount, _completedCount);
+            }
+        }
 
         private TrainSpawn _spawn;
         private List<TrainDestination> _destinations;
@@ -35,6 +54,7 @@ namespace LeasingCase
         private void OnDestroy()
         {
             Unsubscribe();
+            StopAllCoroutines();
         }
 
         public void Update()
@@ -47,6 +67,7 @@ namespace LeasingCase
         private void Subscribe()
         {
             InputController.Pressed += OnPressed;
+            TrainBehaviour.DestinationReached += OnTrainDestinationReached;
         }
 
         private void Unsubscribe()
@@ -54,10 +75,15 @@ namespace LeasingCase
             InputController.Pressed -= OnPressed;
         }
         
-        public void Load(LevelBehaviour previousLevel)
+        public void Load()
         {
+            _currentTrainCount = 0;
+            _correctCount = 0;
+            CompletedCount = 0;
             _started = false;
             _finished = false;
+            
+            _spawn.Initialize();
             Subscribe();
         }
 
@@ -67,7 +93,8 @@ namespace LeasingCase
                 return;
             
             _finished = true;
-            InputController.Pressed -= OnPressed;
+            Unsubscribe();
+            
             if (_spawnRoutine != null)
                 StopCoroutine(_spawnRoutine);
             StartCoroutine(FinishRoutine(success));
@@ -84,6 +111,20 @@ namespace LeasingCase
                 return;
             }
         }
+        
+        private void OnTrainDestinationReached(bool success)
+        {
+            if (_finished)
+                return;
+            
+            if (success)
+                _correctCount++;
+            
+            CompletedCount++;
+            
+            if(CompletedCount == _trainCount)
+                FinishLevel(_completedCount >= _trainsToWin);
+        }
 
         private IEnumerator FinishRoutine(bool success)
         {
@@ -99,6 +140,7 @@ namespace LeasingCase
                 {
                     var destination = _destinations[Random.Range(0, _destinations.Count)];
                     _spawn.Spawn(destination.ColorA, destination.ColorB);
+                    _currentTrainCount++;
                     yield return new WaitForSeconds(_spawnInterval);
                 }
                 yield return null;

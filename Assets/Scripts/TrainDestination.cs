@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using LeasingCase;
 using UnityEngine;
 
 namespace LeasingCase

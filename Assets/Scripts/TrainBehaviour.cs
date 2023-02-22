@@ -67,7 +67,8 @@ namespace LeasingCase
                 if(!_finished && _currentRail.TryGetComponent<TrainDestination>(out var dest))
                 {
                     _finished = true;
-                    DestinationReached?.Invoke(dest.CompareColors(_colorA, _colorB));
+                    var success = dest.CompareColors(_colorA, _colorB);
+                    DestinationReached?.Invoke(success);
                     Destroy(gameObject,0.1f);
                     return;
                 }

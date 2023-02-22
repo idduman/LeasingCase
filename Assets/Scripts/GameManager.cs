@@ -12,13 +12,13 @@ namespace LeasingCase
         [SerializeField] private TrainPrefabData _trainPrefabData;
         [SerializeField] private GameConfig _gameConfig;
         [SerializeField] private List<LevelBehaviour> _levels;
-
-        private LevelBehaviour _previousLevel;
+        
         private LevelBehaviour _currentLevel;
         private int _playerLevel;
 
         public TrainPrefabData TrainPrefabs => _trainPrefabData;
         public GameConfig GameConfig => _gameConfig;
+        public LevelBehaviour CurrentLevel => _currentLevel;
 
         private void Start()
         {
@@ -32,7 +32,9 @@ namespace LeasingCase
                 Debug.LogError("No levels are present in GameManager");
                 return;
             }
+            
             UIController.Instance.Initialize();
+            UIController.Instance.SetLevelText(_playerLevel + 1);
             StartCoroutine(LoadRoutine());
         }
 
@@ -40,11 +42,12 @@ namespace LeasingCase
         {
             if (_currentLevel)
             {
-                _previousLevel = _currentLevel;
+                Destroy(_currentLevel.gameObject);
+                _currentLevel = null;
             }
 
             _currentLevel = Instantiate(_levels[_playerLevel % _levels.Count]);
-            _currentLevel.Load(_previousLevel);
+            _currentLevel.Load();
             yield return new WaitForEndOfFrame();
         }
         
@@ -56,20 +59,8 @@ namespace LeasingCase
         public void EndLevel(bool success)
         {
             if (success)
-            {
-                if (_previousLevel)
-                {
-                    Destroy(_previousLevel.gameObject);
-                    _previousLevel = null;
-                }
                 ++_playerLevel;
-            }
-            else
-            {
-                Destroy(_currentLevel.gameObject);
-                _currentLevel = null;
-            }
-            
+
             Load();
         }
     }
