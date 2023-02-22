@@ -6,8 +6,21 @@ using UnityEngine;
 
 namespace LeasingCase
 {
+    public enum TrainColor
+    {
+        White,
+        Black,
+        Red,
+        Green,
+        Blue,
+        Yellow,
+        Purple,
+    }
+    
     public class TrainBehaviour : MonoBehaviour
     {
+        [SerializeField] private TrainColor _colorA;
+        [SerializeField] private TrainColor _colorB;
         [SerializeField] private float _moveSpeed = 1f;
         [SerializeField] private RailBehaviour _currentRail;
         

@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 3684472864389517394}
   - component: {fileID: 8094819358635050231}
   m_Layer: 6
-  m_Name: RailTileBase
+  m_Name: TileBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
