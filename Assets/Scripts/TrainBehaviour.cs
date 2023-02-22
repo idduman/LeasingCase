@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Cinemachine;
 using UnityEngine;
 
@@ -19,11 +20,13 @@ namespace LeasingCase
     
     public class TrainBehaviour : MonoBehaviour
     {
+        public static event Action<bool> DestinationReached;
+        
         [SerializeField] private TrainColor _colorA;
         [SerializeField] private TrainColor _colorB;
-        [SerializeField] private float _moveSpeed = 1f;
         [SerializeField] private RailBehaviour _currentRail;
         
+        private float _moveSpeed;
         private RailEntryType _currentRailEntryType = RailEntryType.Forward;
         private LayerMask _tileMask;
 
@@ -31,11 +34,14 @@ namespace LeasingCase
 
         private bool _started, _finished;
 
+
         private void Awake()
         {
+            _moveSpeed = GameManager.Instance.GameConfig.TrainMoveSpeed;
             _tileMask = LayerMask.GetMask("Rail");
             _started = true;
             _finished = false;
+            
         }
 
         private void Update()
@@ -43,7 +49,7 @@ namespace LeasingCase
             if (!_started || _finished || !_currentRail)
                 return;
 
-            if (_pathProgress < 1f)
+            if (_pathProgress < 0.98f)
             {
                 var fw = _currentRailEntryType is RailEntryType.Forward;
                 var p = fw ? _pathProgress : (1f - _pathProgress);
@@ -58,6 +64,13 @@ namespace LeasingCase
             }
             else if(_currentRail)
             {
+                if(!_finished && _currentRail.TryGetComponent<TrainDestination>(out var dest))
+                {
+                    _finished = true;
+                    DestinationReached?.Invoke(dest.CompareColors(_colorA, _colorB));
+                    Destroy(gameObject,0.1f);
+                    return;wa
+                }
                 _currentRail = null;
                 GetNextRail();
             }
@@ -92,6 +105,12 @@ namespace LeasingCase
             }
             
             SetRail(rail);
+        }
+
+        public bool CompareColors(TrainColor colorA, TrainColor colorB)
+        {
+            return colorA == _colorA && colorB == _colorB
+                   || colorA == _colorB && colorB == _colorA;
         }
     }
 

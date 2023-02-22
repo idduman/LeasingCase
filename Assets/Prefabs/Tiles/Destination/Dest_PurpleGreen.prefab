@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b150aa67e3d659a4bb63e723748234d7, type: 2}
     - target: {fileID: 3993168024149968248, guid: 7da931ce07eb72a4088fcdce4e32e8cf, type: 3}
       propertyPath: m_Name
-      value: Dest_Purple
+      value: Dest_PurpleGreen
       objectReference: {fileID: 0}
     - target: {fileID: 6008254981356699899, guid: 7da931ce07eb72a4088fcdce4e32e8cf, type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6476000404766434829, guid: 7da931ce07eb72a4088fcdce4e32e8cf, type: 3}
       propertyPath: _colorA
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6476000404766434829, guid: 7da931ce07eb72a4088fcdce4e32e8cf, type: 3}
       propertyPath: _colorB

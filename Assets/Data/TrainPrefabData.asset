@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba332d4950d920d4f801b44c367a8c86, type: 3}
+  m_Name: TrainPrefabData
+  m_EditorClassIdentifier: 
+  TrainPrefabs:
+  - {fileID: 1863402367077496051, guid: a89ae92fd6b714e42a0b7a970a326b0a, type: 3}
+  - {fileID: 1863402367077496051, guid: cef3971845fe50e449c05e3c6050d181, type: 3}
+  - {fileID: 1863402367077496051, guid: dc498f4a3dea1ae40a463ef317588108, type: 3}
+  - {fileID: 1863402367077496051, guid: 5e23b9765148d7d43a4e866fa2ad0ced, type: 3}
+  - {fileID: 1863402367077496051, guid: e1ed9c547a1f53a49b1073ca423afa37, type: 3}
+  - {fileID: 1863402367077496051, guid: af69aacc81708d644ae40d51b535136f, type: 3}
+  - {fileID: 1863402367077496051, guid: 5244270081b440c4b8663e857db62b0d, type: 3}
+  - {fileID: 1863402367077496051, guid: cbf7b089608924747a135249f35d8392, type: 3}
+  - {fileID: 1863402367077496051, guid: dc7b5d61069b73f46a37532be20d8620, type: 3}
+  - {fileID: 1863402367077496051, guid: b5d338a1e1c9c1342b6556d4cbd0d4ba, type: 3}
+  - {fileID: 1863402367077496051, guid: b0f6a6fddbf9b0c4db0e57d4681e818d, type: 3}
+  - {fileID: 1863402367077496051, guid: a4c78ac3d96e90c4393ba41f4391bb50, type: 3}
+  - {fileID: 1863402367077496051, guid: 0e0de4f22f86dc747a702526c4a39d83, type: 3}
+  - {fileID: 1863402367077496051, guid: 444ba0b1224461b41bb17aafd1eb6e86, type: 3}

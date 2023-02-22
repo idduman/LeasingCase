@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace LeasingCase
@@ -15,9 +12,18 @@ namespace LeasingCase
             _rail = GetComponent<RailBehaviour>();
         }
 
-        private void Spawn()
+        public void Spawn(TrainColor colorA, TrainColor colorB)
         {
-            
+            var trainPrefab = GameManager.Instance.TrainPrefabs.GetTrain(colorA, colorB);
+            if(!trainPrefab)
+            {
+                Debug.LogError($"Train of {colorA},{colorB} not found in Config!");
+                return;
+            }
+
+            var train = Instantiate(trainPrefab,
+                _rail.Path.EvaluatePosition(0), _rail.Path.EvaluateOrientation(0));
+            train.SetRail(_rail);
         }
     }
 

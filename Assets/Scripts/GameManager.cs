@@ -9,11 +9,16 @@ namespace LeasingCase
 {
     public class GameManager : SingletonBehaviour<GameManager>
     {
+        [SerializeField] private TrainPrefabData _trainPrefabData;
+        [SerializeField] private GameConfig _gameConfig;
         [SerializeField] private List<LevelBehaviour> _levels;
 
         private LevelBehaviour _previousLevel;
         private LevelBehaviour _currentLevel;
         private int _playerLevel;
+
+        public TrainPrefabData TrainPrefabs => _trainPrefabData;
+        public GameConfig GameConfig => _gameConfig;
 
         private void Start()
         {

@@ -4,14 +4,33 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace LeasingCase
 {
     public class LevelBehaviour : MonoBehaviour
     {
+        [SerializeField] private float _spawnInterval = 2f;
 
+        public bool Spawning;
+        
         private bool _started;
         private bool _finished;
+
+        private TrainSpawn _spawn;
+        private List<TrainDestination> _destinations;
+
+        private Coroutine _spawnRoutine;
+
+        private void Awake()
+        {
+            _spawn = GetComponentInChildren<TrainSpawn>();
+            if (!_spawn)
+                Debug.LogError($"No train spawn found in level \"{name}\"");
+            _destinations = GetComponentsInChildren<TrainDestination>().ToList();
+            if (_destinations.Count < 1)
+                Debug.LogError($"No train destinations found in level \"{name}\"");
+        }
 
         private void OnDestroy()
         {
@@ -39,10 +58,9 @@ namespace LeasingCase
         {
             _started = false;
             _finished = false;
-            
             Subscribe();
         }
-        
+
         private void FinishLevel(bool success)
         {
             if (_finished)
@@ -50,6 +68,8 @@ namespace LeasingCase
             
             _finished = true;
             InputController.Pressed -= OnPressed;
+            if (_spawnRoutine != null)
+                StopCoroutine(_spawnRoutine);
             StartCoroutine(FinishRoutine(success));
         }
         
@@ -59,6 +79,8 @@ namespace LeasingCase
             {
                 _started = true;
                 UIController.Instance.ToggleStartPanel(false);
+                Spawning = true;
+                StartCoroutine(SpawnRoutine());
                 return;
             }
         }
@@ -67,6 +89,20 @@ namespace LeasingCase
         {
             yield return new WaitForSeconds(0.25f);
             GameManager.Instance.FinishLevel(success);
+        }
+
+        private IEnumerator SpawnRoutine()
+        {
+            while (true)
+            {
+                if (Spawning)
+                {
+                    var destination = _destinations[Random.Range(0, _destinations.Count - 1)];
+                    _spawn.Spawn(destination.ColorA, destination.ColorB);
+                    yield return new WaitForSeconds(_spawnInterval);
+                }
+                yield return null;
+            }
         }
     }
 }
