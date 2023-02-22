@@ -11,7 +11,7 @@ namespace LeasingCase
 {
     public class LevelBehaviour : MonoBehaviour
     {
-        [SerializeField] private int _trainCount;
+        [SerializeField] private int _completionTime = 45;
         [SerializeField] private int _trainsToWin;
         [SerializeField] private float _spawnInterval = 2f;
 
@@ -19,6 +19,20 @@ namespace LeasingCase
         
         private bool _started;
         private bool _finished;
+
+        private float _timeRemaining;
+        public float TimeRemaining
+        {
+            get => _timeRemaining;
+            private set
+            {
+                var valueInt = (int) Mathf.Ceil(value);
+                if((int)Mathf.Ceil(_timeRemaining) != valueInt)
+                    UIController.Instance.SetTimeText(valueInt);
+                
+                _timeRemaining = value;
+            }
+        }
 
         private int _currentTrainCount;
         private int _correctCount;
@@ -43,6 +57,9 @@ namespace LeasingCase
 
         private void Awake()
         {
+            TimeRemaining = 0;
+            _started = false;
+            _finished = false;
             _spawn = GetComponentInChildren<TrainSpawn>();
             if (!_spawn)
                 Debug.LogError($"No train spawn found in level \"{name}\"");
@@ -61,7 +78,11 @@ namespace LeasingCase
         {
             if (!_started || _finished)
                 return;
-            
+
+            if (TimeRemaining > 0)
+                TimeRemaining -= Time.deltaTime;
+
+            Spawning = TimeRemaining > 0;
         }
 
         private void Subscribe()
@@ -82,6 +103,7 @@ namespace LeasingCase
             CompletedCount = 0;
             _started = false;
             _finished = false;
+            TimeRemaining = _completionTime;
             
             _spawn.Initialize();
             Subscribe();
@@ -121,8 +143,9 @@ namespace LeasingCase
                 _correctCount++;
             
             CompletedCount++;
+            _currentTrainCount--;
             
-            if(CompletedCount == _trainCount)
+            if(_currentTrainCount < 1 && !Spawning)
                 FinishLevel(_completedCount >= _trainsToWin);
         }
 

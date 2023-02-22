@@ -68,6 +68,6 @@ public class UIController : SingletonBehaviour<UIController>
         var minutes = time / 60;
         var seconds = time % 60;
         var timeText = $"{minutes}:{seconds:00}";
-        _timeText.text = $"Time {timeText}]";
+        _timeText.text = $"Time {timeText}";
     }
 }
