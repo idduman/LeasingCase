@@ -97,7 +97,7 @@ namespace LeasingCase
             {
                 if (Spawning)
                 {
-                    var destination = _destinations[Random.Range(0, _destinations.Count - 1)];
+                    var destination = _destinations[Random.Range(0, _destinations.Count)];
                     _spawn.Spawn(destination.ColorA, destination.ColorB);
                     yield return new WaitForSeconds(_spawnInterval);
                 }

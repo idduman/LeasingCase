@@ -14,7 +14,7 @@ PrefabInstance:
     - target: {fileID: 2080634960716279425, guid: 7da931ce07eb72a4088fcdce4e32e8cf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b150aa67e3d659a4bb63e723748234d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 7c18cc83a33232648be835c701da631c, type: 2}
     - target: {fileID: 3993168024149968248, guid: 7da931ce07eb72a4088fcdce4e32e8cf, type: 3}
       propertyPath: m_Name
       value: Dest_PurpleGreen

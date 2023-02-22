@@ -33,8 +33,8 @@ namespace LeasingCase
         private Renderer[] _renderers;
         
         private static readonly float Treshold = 0.15f;
-        private static readonly float TransparentModeAlpha = 0.4f;
-        private static readonly float TransparentModeOffset = 0.15f;
+        private static readonly float TransparentModeAlpha = 0.5f;
+        private static readonly float TransparentModeOffset = 0.1f;
 
         private Vector3 _pos1;
         private Vector3 _pos2;
@@ -80,6 +80,8 @@ namespace LeasingCase
 
             var offset = renderMode is RailRenderMode.Transparent ? TransparentModeOffset : 0f;
             _model.localPosition = new Vector3(0f, offset, 0f);
+            
+            _model.gameObject.SetActive(renderMode is not RailRenderMode.Hidden);
 
             foreach (var r in _renderers)
             {

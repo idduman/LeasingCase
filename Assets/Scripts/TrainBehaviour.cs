@@ -49,7 +49,7 @@ namespace LeasingCase
             if (!_started || _finished || !_currentRail)
                 return;
 
-            if (_pathProgress < 0.98f)
+            if (_pathProgress < 1f)
             {
                 var fw = _currentRailEntryType is RailEntryType.Forward;
                 var p = fw ? _pathProgress : (1f - _pathProgress);
@@ -69,7 +69,7 @@ namespace LeasingCase
                     _finished = true;
                     DestinationReached?.Invoke(dest.CompareColors(_colorA, _colorB));
                     Destroy(gameObject,0.1f);
-                    return;wa
+                    return;
                 }
                 _currentRail = null;
                 GetNextRail();

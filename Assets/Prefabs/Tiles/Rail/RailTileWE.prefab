@@ -158,7 +158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3684472864389517394, guid: 7e16660680a410c498c581d228c1453b, type: 3}
       propertyPath: m_Waypoints.Array.data[1].tangent.x
-      value: 0.3
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3684472864389517394, guid: 7e16660680a410c498c581d228c1453b, type: 3}
       propertyPath: m_Waypoints.Array.data[1].tangent.z
