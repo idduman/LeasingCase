@@ -40,7 +40,7 @@ namespace LeasingCase
             _activeRail.SetRenderMode(RailRenderMode.Opaque);
             _inactiveRail = _railB;
             _inactiveRail.Collider.enabled = false;
-            _inactiveRail.SetRenderMode(RailRenderMode.Hidden);
+            Hover = false;
         }
 
         private void OnTriggerEnter(Collider other)

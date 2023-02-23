@@ -171,7 +171,7 @@ MonoBehaviour:
   _trainPrefabData: {fileID: 11400000, guid: 25c9bb6564cf4374d9d13ad9a0ef8409, type: 2}
   _gameConfig: {fileID: 11400000, guid: fa6cfe332fb070841a3d0468c5cc853f, type: 2}
   _levels:
-  - {fileID: 4920941201436685054, guid: adf1b191f699cbe42b80f85ba814e899, type: 3}
+  - {fileID: 7282587400988727153, guid: 40babdc7db5f4a547a9dec7097805d24, type: 3}
 --- !u!114 &357899404
 MonoBehaviour:
   m_ObjectHideFlags: 0
