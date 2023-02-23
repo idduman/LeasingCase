@@ -585,6 +585,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level2
       objectReference: {fileID: 0}
+    - target: {fileID: 4920941201436685054, guid: 1802d9a053469e04785818591f7f04ee, type: 3}
+      propertyPath: _trainsToWin
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920941201436685054, guid: 1802d9a053469e04785818591f7f04ee, type: 3}
+      propertyPath: _completionTime
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4920941201436685055, guid: 1802d9a053469e04785818591f7f04ee, type: 3}
       propertyPath: m_RootOrder
       value: 0

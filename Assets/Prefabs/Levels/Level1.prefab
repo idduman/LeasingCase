@@ -354,6 +354,10 @@ PrefabInstance:
       value: Level1
       objectReference: {fileID: 0}
     - target: {fileID: 4920941201436685054, guid: 1802d9a053469e04785818591f7f04ee, type: 3}
+      propertyPath: _trainsToWin
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920941201436685054, guid: 1802d9a053469e04785818591f7f04ee, type: 3}
       propertyPath: _spawnInterval
       value: 1.5
       objectReference: {fileID: 0}

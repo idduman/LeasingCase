@@ -172,6 +172,10 @@ MonoBehaviour:
   _gameConfig: {fileID: 11400000, guid: fa6cfe332fb070841a3d0468c5cc853f, type: 2}
   _levels:
   - {fileID: 7282587400988727153, guid: 40babdc7db5f4a547a9dec7097805d24, type: 3}
+  - {fileID: 7282587400988727153, guid: 2f44c5c6760b7ad4c84033b23aebf5c7, type: 3}
+  - {fileID: 7282587400988727153, guid: 4aa5b94cdad74344a9d391670395562f, type: 3}
+  - {fileID: 7282587400988727153, guid: 9a23c11c566359441b62ccda5e0e4ad1, type: 3}
+  - {fileID: 7282587400988727153, guid: 157bff9c260c51a488350fe040759ef8, type: 3}
 --- !u!114 &357899404
 MonoBehaviour:
   m_ObjectHideFlags: 0

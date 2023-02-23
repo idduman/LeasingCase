@@ -22,6 +22,7 @@ namespace LeasingCase
 
         private void Start()
         {
+            _playerLevel = PlayerPrefs.GetInt("PlayerLevel", 0);
             Load();
         }
 
@@ -61,6 +62,7 @@ namespace LeasingCase
             if (success)
                 ++_playerLevel;
 
+            PlayerPrefs.SetInt("PlayerLevel", _playerLevel);
             Load();
         }
     }

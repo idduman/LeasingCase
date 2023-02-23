@@ -13,6 +13,7 @@ namespace LeasingCase
         private const string MenuName = "Data/" + TypeName;
 
         public float TrainMoveSpeed = 2f;
+        public float TrainSpawnInterval = 1.5f;
     }
 }
 

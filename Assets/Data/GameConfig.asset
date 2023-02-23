@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829d4c178fecab64493d78ae733a7609, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  TrainMoveSpeed: 1.5
+  TrainMoveSpeed: 0.75
+  TrainSpawnInterval: 2

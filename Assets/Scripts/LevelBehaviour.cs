@@ -13,7 +13,6 @@ namespace LeasingCase
     {
         [SerializeField] private int _completionTime = 45;
         [SerializeField] private int _trainsToWin;
-        [SerializeField] private float _spawnInterval = 2f;
 
         public bool Spawning;
         
@@ -54,6 +53,7 @@ namespace LeasingCase
         private List<TrainDestination> _destinations;
 
         private Coroutine _spawnRoutine;
+        private float _spawnInterval;
 
         private void Awake()
         {
@@ -61,6 +61,7 @@ namespace LeasingCase
             _started = false;
             _finished = false;
             _spawn = GetComponentInChildren<TrainSpawn>();
+            _spawnInterval = GameManager.Instance.GameConfig.TrainSpawnInterval;
             if (!_spawn)
                 Debug.LogError($"No train spawn found in level \"{name}\"");
             _destinations = GetComponentsInChildren<TrainDestination>().ToList();

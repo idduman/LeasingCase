@@ -17,8 +17,9 @@ namespace LeasingCase
 
         public TrainBehaviour GetTrain(TrainColor colorA, TrainColor colorB)
         {
+            //Debug.Log($"ColorA {colorA} ColorB {colorB}");
             var filteredList = TrainPrefabs.Where(x => x.CompareColors(colorA, colorB)).ToList();
-            return filteredList[Random.Range(0, filteredList.Count-1)];
+            return filteredList[Random.Range(0, filteredList.Count)];
         }
     }
 }
